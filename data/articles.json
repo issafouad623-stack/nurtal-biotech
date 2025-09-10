@@ -1,0 +1,45 @@
+[
+  {
+    "id": "1757018235957yad4643vd",
+    "title": "Welcome to Our Biotech News Platform",
+    "excerpt": "This is our first article showcasing the new content management system.",
+    "content": "<h2>Welcome to the Future of Biotech News</h2><p>This article demonstrates our new content management system built with Next.js and a custom database.</p><p>Features include:</p><ul><li>Rich text editing</li><li>Image uploads</li><li>Category management</li><li>Tag system</li><li>Draft and publish workflow</li></ul>",
+    "author": "Nurtal Editorial",
+    "category": "Biotechnology",
+    "tags": [
+      "welcome",
+      "cms",
+      "biotech"
+    ],
+    "imageUrl": "",
+    "videoUrl": "",
+    "featured": true,
+    "status": "published",
+    "slug": "welcome-to-our-biotech-news-platform",
+    "readTime": 1,
+    "publishedAt": "2025-09-04T20:37:15.956Z",
+    "updatedAt": "2025-09-04T20:37:15.956Z"
+  },
+  {
+    "id": "1757018248752swnne5rh9",
+    "title": "AI-Powered Drug Discovery Breakthrough",
+    "excerpt": "Researchers announce major breakthrough in using artificial intelligence for accelerated drug discovery processes.",
+    "content": "<h2>Revolutionary AI Drug Discovery</h2><p>A team of researchers has developed a groundbreaking AI system that can predict molecular behavior with unprecedented accuracy.</p><h3>Key Findings</h3><p>The system reduces drug discovery timelines from years to months by:</p><ul><li>Analyzing millions of molecular combinations</li><li>Predicting side effects before clinical trials</li><li>Optimizing drug compounds automatically</li></ul><p>This breakthrough could revolutionize how we approach pharmaceutical research and development.</p>",
+    "author": "Dr. Sarah Chen",
+    "category": "AI",
+    "tags": [
+      "artificial-intelligence",
+      "drug-discovery",
+      "research",
+      "breakthrough"
+    ],
+    "imageUrl": "",
+    "videoUrl": "",
+    "featured": true,
+    "status": "published",
+    "slug": "ai-powered-drug-discovery-breakthrough",
+    "readTime": 1,
+    "publishedAt": "2025-09-04T20:37:28.752Z",
+    "updatedAt": "2025-09-04T20:37:28.752Z"
+  }
+]
