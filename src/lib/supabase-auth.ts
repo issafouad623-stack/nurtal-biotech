@@ -1,5 +1,6 @@
 import { supabaseAdmin } from './supabase';
 import { cookies } from 'next/headers';
+import bcrypt from 'bcryptjs';
 
 export interface AdminUser {
   id: string;
@@ -14,15 +15,13 @@ export interface Session {
   expires_at: string;
 }
 
-// Simple password hashing (use bcrypt in production)
-function simpleHash(password: string): string {
-  let hash = 0;
-  for (let i = 0; i < password.length; i++) {
-    const char = password.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  return Math.abs(hash).toString(36);
+// Password hashing using bcrypt
+function hashPassword(password: string): string {
+  return bcrypt.hashSync(password, 12);
+}
+
+function verifyPassword(password: string, hash: string): boolean {
+  return bcrypt.compareSync(password, hash);
 }
 
 // Generate session token
@@ -32,17 +31,20 @@ function generateSessionToken(): string {
 
 // Authenticate admin user
 export async function authenticateAdmin(email: string, password: string): Promise<{ user: AdminUser; token: string } | null> {
-  const passwordHash = simpleHash(password);
-  
   const { data: user, error } = await supabaseAdmin
     .from('admin_users')
     .select('*')
     .eq('email', email)
-    .eq('password_hash', passwordHash)
     .single();
 
   if (error || !user) {
     console.error('Authentication failed:', error);
+    return null;
+  }
+
+  // Verify password using bcrypt
+  if (!verifyPassword(password, user.password_hash)) {
+    console.error('Invalid password');
     return null;
   }
 
@@ -143,7 +145,7 @@ export async function logoutUser(token: string): Promise<boolean> {
 
 // Change admin password
 export async function changeAdminPassword(userId: string, newPassword: string): Promise<boolean> {
-  const passwordHash = simpleHash(newPassword);
+  const passwordHash = hashPassword(newPassword);
   
   const { error } = await supabaseAdmin
     .from('admin_users')
