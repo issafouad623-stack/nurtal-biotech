@@ -1,15 +1,32 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://btxqnhkckvefmuyfghus.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0eHFuaGtja3ZlZm11eWZnaHVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMTcyMTAsImV4cCI6MjA3MjU5MzIxMH0.dugxPh1xUzi0lU0OBw0lN_PGaWpwJpHv10FhwhYcmcw';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const isServer = typeof window === 'undefined';
+
+if (!supabaseUrl) {
+  throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL. Set it in your environment variables.');
+}
+
+if (!supabaseAnonKey) {
+  throw new Error('Missing NEXT_PUBLIC_SUPABASE_ANON_KEY. Set it in your environment variables.');
+}
+
+// Only required on the server where admin operations occur
+if (isServer && !supabaseServiceRoleKey) {
+  throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY. Set it in your server environment variables.');
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // For server-side operations with elevated privileges
-export const supabaseAdmin = createClient(
-  supabaseUrl,
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0eHFuaGtja3ZlZm11eWZnaHVzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NzAxNzIxMCwiZXhwIjoyMDcyNTkzMjEwfQ.5pgcIKZwWjVGjfQFjsHXll4Z6tECTFxdLUr0ngqSZ_w'
-);
+export const supabaseAdmin = createClient(supabaseUrl, (isServer ? supabaseServiceRoleKey! : supabaseAnonKey), {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+  },
+});
 
 export interface Article {
   id: string;

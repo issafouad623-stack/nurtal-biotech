@@ -18,6 +18,17 @@ I've successfully resolved all the errors and migrated your system to Supabase w
 3. Copy and paste the entire content from `supabase-schema.sql`
 4. Click **Run** to execute the SQL
 
+### 1b. Configure Environment Variables
+Create a `.env.local` file in the project root and add:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+```
+
+Then restart the dev server.
+
 ### 2. Access Your CMS
 1. Make sure your dev server is running: `npm run dev`
 2. Go to: http://localhost:3000/admin/login

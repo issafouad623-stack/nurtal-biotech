@@ -28,10 +28,10 @@ const ArticleCard = ({ article, variant = 'default' }: ArticleCardProps) => {
     >
       <Link href={`/articles/${article.slug}`} className="block">
         {/* Image */}
-        <div className={`relative overflow-hidden ${isFeatured ? 'h-80' : 'h-48'} ${!article.image_url ? 'bg-secondary-700' : ''}`}>
-          {article.image_url ? (
+        <div className={`relative overflow-hidden ${isFeatured ? 'h-80' : 'h-48'} ${!article.imageUrl ? 'bg-secondary-700' : ''}`}>
+          {article.imageUrl ? (
             <Image
-              src={article.image_url}
+              src={article.imageUrl}
               alt={article.title}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"

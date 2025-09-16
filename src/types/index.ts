@@ -31,3 +31,39 @@ export interface Author {
   expertise: string[];
   articlesCount: number;
 }
+
+export interface Article {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  imageUrl: string;
+  category: Category;
+  author: Author;
+  publishedAt: string;
+  views: number;
+  likes: number;
+  comments: number;
+  tags: string[];
+  readTime: number;
+  featured: boolean;
+  slug: string;
+}
+
+export interface Article {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  imageUrl: string;
+  category: Category;
+  author: Author;
+  publishedAt: string;
+  views: number;
+  likes: number;
+  comments: number;
+  tags: string[];
+  readTime: number;
+  featured: boolean;
+  slug: string;
+}

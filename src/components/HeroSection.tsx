@@ -215,7 +215,7 @@ const HeroSection = () => {
                 {/* Main Hero Image */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80"
+                    src="/images/randomimage.jpeg"
                     alt="Advanced biotechnology laboratory with AI-powered drug discovery equipment, featuring sophisticated molecular analysis screens and robotic systems working on pharmaceutical research"
                     width={800}
                     height={600}
